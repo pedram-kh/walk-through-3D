@@ -1,0 +1,129 @@
+{
+  "version": 1,
+  "camera": {
+    "horizontal_fov_deg": 65.47,
+    "design_aspect": 1.8469
+  },
+  "stops": [
+    {
+      "id": "01-hero",
+      "dir": "stops/01-hero/",
+      "section": "s01",
+      "origin": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "rest": {
+        "position": [
+          0.0,
+          -0.2,
+          11.0
+        ],
+        "quaternion": [
+          0.00909,
+          0.0,
+          0.0,
+          0.999959
+        ]
+      },
+      "poster": "stops/01-hero/poster.jpg"
+    },
+    {
+      "id": "02-clients",
+      "dir": "stops/02-clients/",
+      "section": "s02",
+      "origin": [
+        0.0,
+        -32.47644,
+        0.91157
+      ],
+      "quaternion": [
+        -0.492107,
+        0.0,
+        0.0,
+        0.870535
+      ],
+      "rest": {
+        "position": [
+          0.0,
+          -23.05171,
+          6.58384
+        ],
+        "quaternion": [
+          -0.492107,
+          0.0,
+          0.0,
+          0.870535
+        ]
+      },
+      "poster": "stops/02-clients/poster.jpg"
+    },
+    {
+      "id": "03-problem",
+      "dir": "stops/03-problem/",
+      "section": "s03",
+      "origin": [
+        -32.4545,
+        -31.19125,
+        1.68506
+      ],
+      "quaternion": [
+        -0.426177,
+        0.435267,
+        -0.246054,
+        0.753905
+      ],
+      "rest": {
+        "position": [
+          -22.92822,
+          -26.47889,
+          4.5212
+        ],
+        "quaternion": [
+          -0.426177,
+          0.435267,
+          -0.246054,
+          0.753905
+        ]
+      },
+      "poster": "stops/03-problem/poster.jpg"
+    },
+    {
+      "id": "04-cycle",
+      "dir": "stops/04-cycle/",
+      "section": "s04",
+      "origin": [
+        -31.15546,
+        -13.81313,
+        -25.73497
+      ],
+      "quaternion": [
+        0.007872,
+        0.253926,
+        -0.430722,
+        0.86599
+      ],
+      "rest": {
+        "position": [
+          -26.39232,
+          -16.36928,
+          -16.15485
+        ],
+        "quaternion": [
+          0.007872,
+          0.253926,
+          -0.430722,
+          0.86599
+        ]
+      },
+      "poster": "stops/04-cycle/poster.jpg"
+    }
+  ]
+}

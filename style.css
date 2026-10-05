@@ -1,0 +1,138 @@
+:root { --ink: #020204; --paper: #f2f1ee; --violet: #a14fe2; --teal: #2398af;
+  --type: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--ink); color: var(--paper); font-family: var(--type); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* ---- Modes -----------------------------------------------------------------------
+   html.live              live 3D in every section (set by app.js on capable devices)
+   section.scene-ready    that section's stop is ready: its canvas covers the poster
+   no class               posters only (touch, reduced motion, graphics failure)   */
+
+/* ---- Each section's 3D layer: behind the section's text, scrolling with it ---- */
+.scene { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.scene canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+  opacity: 0; transition: opacity .6s ease; }
+.scene-ready .scene canvas { opacity: 1; }
+.tags { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+
+/* Small spaced labels that ride on tiles (positioned by the stop) */
+.tile-tag { position: absolute; left: 0; top: 0; pointer-events: none; white-space: nowrap;
+  font: 11px var(--type); letter-spacing: .55em; text-transform: uppercase;
+  color: #dddce6; text-shadow: 0 0 2px #020204, 0 0 6px #020204, 0 0 14px #020204cc;
+  opacity: 0; transition: opacity .6s ease; will-change: transform; }
+.scene-ready .tile-tag { opacity: 1; }
+
+/* ---- The page: one full-screen section per stop, one below the other ---- */
+main { position: relative; z-index: 2; }
+.section { position: relative; isolation: isolate; height: 100svh; min-height: 480px; overflow: hidden; pointer-events: none;
+  background: var(--ink) var(--poster) center / cover no-repeat;      /* the poster, until the 3D is ready */
+  --gutter: clamp(16px, 10vw, 172px); }
+.section a, .section button { pointer-events: auto; }
+
+/* Top bar, matched to catalyst-growth.com: 5rem tall, a centred 90rem container with
+   a 0.75-1rem side margin, the logo on the left and the menu icon on the right.
+   Fixed: it stays on screen down the whole page. */
+.nav { position: fixed; z-index: 3; top: 0; left: 0; right: 0; height: 5rem; padding-block: 1em;
+  font-size: clamp(1rem, .9643rem + .1786vw, 1.125rem);   /* the site's fluid text size: 16px phone, 18px desktop */
+  display: flex; align-items: center; justify-content: center; }
+.nav-inner { width: calc(100% - clamp(.75rem, .6786rem + .357vw, 1rem) * 2); max-width: 90rem;
+  display: flex; align-items: center; justify-content: space-between; }
+.brand { flex: none; width: 7.5em; display: flex; align-items: center; }
+.brand img { display: block; width: 100%; height: auto; }      /* fills the 7.5em box, like the site */
+.menu { position: relative; width: 2em; height: 2em; display: flex; align-items: center; justify-content: center;
+  padding: 0; font: inherit; background: none; border: 0; color: var(--paper); cursor: pointer; }
+.menu::before { content: ''; position: absolute; inset: -25%; }   /* larger hit area, like the site's 150% button */
+.menu svg { display: block; pointer-events: none; overflow: visible; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; }
+
+.pill { display: inline-block; padding: 15px 30px; border-radius: 99px; background: var(--paper); color: var(--ink);
+  font-size: 13px; text-transform: uppercase; letter-spacing: .02em; text-decoration: none; transition: background .2s ease; }
+.pill:hover { background: #fff; }
+
+/* ---- Section 01, hero ---- */
+.s-hero::before { content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, #020204e6 0%, #020204b3 28%, #02020400 58%),
+              linear-gradient(180deg, #020204b3 0%, #02020400 18%); }
+.lede { position: absolute; left: var(--gutter); top: 20%; max-width: min(920px, 60vw); }
+.lede h1, .lede h2 { margin: 0 0 28px; font-weight: 400; font-size: clamp(38px, 4.6vw, 78px); line-height: .96;
+  letter-spacing: -.03em; text-transform: uppercase; text-shadow: 0 0 40px #02020499; }
+.lede h1 span { display: block; }
+.lede p { margin: 0 0 40px; font-size: clamp(15px, 1.1vw, 18px); line-height: 1.45; color: #d6d5de; }
+
+/* ---- Section 02, clients: the logo grid is 3D; the label sits above its top-left corner ---- */
+.eyebrow { margin: 0; font: 12px/1 "Geist Mono", ui-monospace, Menlo, monospace; font-weight: 400; letter-spacing: .06em;
+  text-transform: uppercase; color: #ffffff80; }
+/* Text that lines up with 3D objects follows the 3D view's scale (--fit-x/y, set by the runtime). */
+.s-clients .eyebrow { position: absolute; left: calc(50% + (10% - 50%) * var(--fit-x, 1)); top: calc(50% + (39.7% - 50%) * var(--fit-y, 1) - 34px); }
+/* The brand names: real text for screen readers and search; visible only on the poster page. */
+.brand-list { margin: 0; padding: 0; list-style: none; }
+.live .brand-list { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+html:not(.live) .brand-list { position: absolute; left: 10%; right: 10%; top: 42%; display: grid;
+  grid-template-columns: repeat(5, 1fr); gap: 0; font-size: 20px; color: #ffffffb8; text-align: center; }
+html:not(.live) .brand-list li { padding: 24px 8px; border: 1px solid #ffffff14; }
+html:not(.live) .s-clients { background-image: none; }     /* the list is the grid on the flat page */
+
+/* ---- Section 03, the problem: the card rows are 3D; all text is HTML around them ---- */
+.s-problem { --left: clamp(16px, 6vw, 120px); }
+.problem-title { position: absolute; left: var(--left); top: calc(9% + 22px); margin: 0; font-weight: 300;
+  font-size: clamp(30px, 3.9vw, 72px); line-height: 1; letter-spacing: -.02em; text-transform: uppercase; }
+.problem-title span { display: block; }
+.problem-title .dim { color: #ffffff80; }
+.problem-rows { margin: 0; padding: 0; list-style: none; }
+.problem-rows li { position: absolute; left: var(--left); right: clamp(12px, 1.5vw, 28px);
+  top: calc(50% + (var(--row-y) - 50%) * var(--fit-y, 1)); transform: translateY(-50%);
+  display: flex; align-items: center; gap: 16px; font-weight: 300; font-size: clamp(18px, 1.6vw, 30px); text-transform: uppercase; }
+.problem-rows .num { font: 12px/1 "Geist Mono", ui-monospace, Menlo, monospace; color: #ffffff80; }
+.problem-rows .rule { width: 32px; height: 1px; background: #ffffff40; }
+.problem-rows .arrow { margin-left: auto; color: #ffffff80; display: flex; }
+.problem-copy { position: absolute; left: var(--left); top: 89.5%; max-width: 34em; margin: 0;
+  font-size: clamp(14px, 1vw, 18px); line-height: 1.6; color: #ffffffb8; }
+.problem-equation { position: absolute; right: 7%; top: 89.5%; margin: 0; font-weight: 300; white-space: nowrap;
+  font-size: clamp(18px, 1.5vw, 28px); line-height: 1.35; }      /* one line, right edge on the cards' right edge */
+.problem-equation .eq { color: #75d3dd; }      /* oklch(0.8 0.12 200), the landing page's teal */
+
+/* ---- Section 04, the creative cycle: ring, spheres, stage labels, mark and the list's lines are 3D; title and rows are HTML ---- */
+.cycle-list { position: absolute; left: calc(50% + (56% - 50%) * var(--fit-x, 1)); right: 7%; top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: clamp(24px, 3vw, 40px); }
+.cycle-title { margin: 0; padding-top: clamp(24px, 2.6vw, 48px); border-top: 1px solid #ffffff24; font-weight: 300;
+  font-size: clamp(32px, 4.6vw, 88px); line-height: .9; letter-spacing: -.05em; text-transform: uppercase; }
+.cycle-rows { margin: 0; padding: 0; list-style: none; }
+.cycle-rows button { display: flex; align-items: baseline; gap: 20px; width: 100%; padding: clamp(14px, 1.3vw, 22px) 0;
+  font: inherit; color: #ffffff80; text-align: left; background: none; border: 0; cursor: pointer;
+  background-image: linear-gradient(90deg, #7B4099, #5481A9, #009992), linear-gradient(#ffffff24, #ffffff24);
+  background-size: 0% 1px, 100% 1px; background-position: left bottom; background-repeat: no-repeat;
+  transition: background-size .5s cubic-bezier(.2, .8, .2, 1); }
+.cycle-rows .num { font: 12px/1 "Geist Mono", ui-monospace, Menlo, monospace; transition: color .4s; }
+.cycle-rows .name { font-weight: 300; font-size: clamp(28px, 2.4vw, 44px); line-height: 1; letter-spacing: -.03em;
+  text-transform: uppercase; transition: color .4s, transform .4s; }
+.cycle-rows [aria-current] { background-size: 100% 1px, 100% 1px; }
+.cycle-rows [aria-current] .num { color: #75d3dd; }
+.cycle-rows [aria-current] .name { color: #fff; transform: translateX(12px); }
+/* Once stop 04 is running, its lines are drawn in 3D. */
+.lines-3d .cycle-title { border-top-color: transparent; }
+.lines-3d .cycle-rows button { background-image: none; }
+
+/* ---- Page-level controls ---- */
+/* Jump links, one per section: the section on screen has the filled dot. */
+.page-dots { position: fixed; z-index: 3; left: clamp(6px, 1.2vw, 22px); top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 6px; }
+.page-dots a { width: 20px; height: 20px; display: grid; place-items: center; }
+.page-dots a::before { content: ''; width: 6px; height: 6px; border-radius: 50%; border: 1px solid #ffffff73;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease; }
+.page-dots a:hover::before { border-color: var(--paper); }
+.page-dots a[aria-current]::before { background: var(--paper); border-color: var(--paper); transform: scale(1.3); }
+
+@media (max-width: 760px) {
+  .lede { top: 16%; right: var(--gutter); max-width: none; }
+  .lede p br { display: none; }
+  .s-hero::before { background: linear-gradient(180deg, #020204d9 0%, #02020499 55%, #02020400 85%); }
+  .s-clients .eyebrow { left: 16px; top: 22%; }
+  html:not(.live) .brand-list { left: 16px; right: 16px; top: calc(22% + 32px); grid-template-columns: repeat(2, 1fr); font-size: 17px; }
+  html:not(.live) .brand-list li { padding: 18px 8px; }
+  .problem-rows .arrow, .problem-rows .rule { display: none; }
+  .problem-equation { left: var(--left); right: auto; top: auto; bottom: 4%; white-space: normal; }
+  .problem-copy { top: auto; bottom: 16%; right: var(--left); }
+  .cycle-list { left: 16px; right: 16px; top: auto; bottom: 4%; transform: none; gap: 12px; }
+  .cycle-title { padding-top: 12px; }
+}

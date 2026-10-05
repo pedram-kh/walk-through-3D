@@ -1,0 +1,199 @@
+{
+ "id": "02-clients",
+ "blender": "4.5.14 LTS",
+ "rest": {
+  "position": [
+   0.0,
+   0.0,
+   11.0
+  ],
+  "quaternion": [
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "horizontal_fov_deg": 65.47,
+  "design_aspect": 1.8469
+ },
+ "brief": {
+  "status": "approved 2026-10-04",
+  "text": "3D wordmarks in the cells. HTML curtain: the small 'CREATIVE FOR' label only. The ten brand names are also real text in the section: read by screen readers, visible in the flat fallback.",
+  "buttons": "none",
+  "button_behaviour": "n/a",
+  "scene_behaviour": "Cells float at slightly different depths. Idle: nothing moves. Hover (like catalyst-growth.com logo grid): hovered cell lifts toward the camera, its wordmark goes full white while the others dim to 50%, a thin violet-blue-teal gradient border rotates around it, a violet glow fades in from its top-left corner. The current parts around the cursor. Monochrome apart from the hover. Arrives frozen and black and white; live once the section is on screen.",
+  "current": "Enters where the journey current from stop 01 ends, threads the grid lines, leaves on the left (the next transition tilts left).",
+  "media": "the ten wordmarks only",
+  "particles": "only the current; no dust (changed 2026-10-04)",
+  "wordmarks": "Typed in Google fonts like the landing HTML; new: Perplexity (Inter Tight 500, lowercase), Granola (Fraunces 500), Canva (Pacifico)."
+ },
+ "colors": {
+  "cell": [
+   0.00061,
+   0.00061,
+   0.00121
+  ],
+  "line": [
+   0.00719,
+   0.00719,
+   0.00719
+  ],
+  "word": [
+   0.48,
+   0.48,
+   0.48
+  ]
+ },
+ "cells": [
+  {
+   "name": "Cell_00",
+   "word": "Word_00",
+   "brand": "perplexity",
+   "row": 0,
+   "col": 0,
+   "centre": [
+    -4.52571,
+    0.31942,
+    0.0
+   ],
+   "depth": 11.0,
+   "width": 2.2629,
+   "height": 0.9452
+  },
+  {
+   "name": "Cell_01",
+   "word": "Word_01",
+   "brand": "Granola",
+   "row": 0,
+   "col": 1,
+   "centre": [
+    -2.38629,
+    0.33685,
+    -0.6
+   ],
+   "depth": 11.6,
+   "width": 2.3863,
+   "height": 0.9967
+  },
+  {
+   "name": "Cell_02",
+   "word": "Word_02",
+   "brand": "Lovable",
+   "row": 0,
+   "col": 2,
+   "centre": [
+    0.0,
+    0.30781,
+    0.4
+   ],
+   "depth": 10.6,
+   "width": 2.1806,
+   "height": 0.9108
+  },
+  {
+   "name": "Cell_03",
+   "word": "Word_03",
+   "brand": "fyxer",
+   "row": 0,
+   "col": 3,
+   "centre": [
+    2.32457,
+    0.32814,
+    -0.3
+   ],
+   "depth": 11.3,
+   "width": 2.3246,
+   "height": 0.9709
+  },
+  {
+   "name": "Cell_04",
+   "word": "Word_04",
+   "brand": "MAGIC AI",
+   "row": 0,
+   "col": 4,
+   "centre": [
+    4.27886,
+    0.302,
+    0.6
+   ],
+   "depth": 10.4,
+   "width": 2.1394,
+   "height": 0.8936
+  },
+  {
+   "name": "Cell_10",
+   "word": "Word_10",
+   "brand": "Mozart",
+   "row": 1,
+   "col": 0,
+   "centre": [
+    -4.73143,
+    -0.65417,
+    -0.5
+   ],
+   "depth": 11.5,
+   "width": 2.3657,
+   "height": 0.9881
+  },
+  {
+   "name": "Cell_11",
+   "word": "Word_11",
+   "brand": "cleo",
+   "row": 1,
+   "col": 1,
+   "centre": [
+    -2.20114,
+    -0.60867,
+    0.3
+   ],
+   "depth": 10.7,
+   "width": 2.2011,
+   "height": 0.9194
+  },
+  {
+   "name": "Cell_12",
+   "word": "Word_12",
+   "brand": "VIKTOR",
+   "row": 1,
+   "col": 2,
+   "centre": [
+    0.0,
+    -0.66555,
+    -0.7
+   ],
+   "depth": 11.7,
+   "width": 2.4069,
+   "height": 1.0053
+  },
+  {
+   "name": "Cell_13",
+   "word": "Word_13",
+   "brand": "Jack & Jill",
+   "row": 1,
+   "col": 3,
+   "centre": [
+    2.16,
+    -0.59729,
+    0.5
+   ],
+   "depth": 10.5,
+   "width": 2.16,
+   "height": 0.9022
+  },
+  {
+   "name": "Cell_14",
+   "word": "Word_14",
+   "brand": "Canva",
+   "row": 1,
+   "col": 4,
+   "centre": [
+    4.608,
+    -0.63711,
+    -0.2
+   ],
+   "depth": 11.2,
+   "width": 2.304,
+   "height": 0.9623
+  }
+ ]
+}
