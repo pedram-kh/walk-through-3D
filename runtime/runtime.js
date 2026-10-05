@@ -49,15 +49,20 @@ export async function startPage() {
   });
 
   // ---- Sizing: keep the designed frame on any screen (as the hero always did) ----
+  // A section shorter than the screen (stop 02) shows the middle band of the full-screen
+  // view, so its objects keep the size they would have in a full-screen section.
   function fit(view) {
     const width = view.section.clientWidth || innerWidth, height = view.section.clientHeight || innerHeight;
-    const aspect = width / height;
+    const fullHeight = Math.max(height, innerHeight);
+    const aspect = width / fullHeight;
     const tanV = Math.max(halfH / aspect, halfH / design);
     const pixelRatio = Math.min(devicePixelRatio, quality);
     view.camera.fov = THREE.MathUtils.radToDeg(2 * Math.atan(tanV));
     view.camera.aspect = aspect;
+    if (fullHeight > height) view.camera.setViewOffset(width, fullHeight, 0, (fullHeight - height) / 2, width, height);
+    else view.camera.clearViewOffset();
     view.camera.updateProjectionMatrix();
-    view.size = { width, height, pixelScale: height * pixelRatio / (2 * tanV) };
+    view.size = { width, height, pixelScale: fullHeight * pixelRatio / (2 * tanV) };
     if (view.renderer) {
       view.renderer.setPixelRatio(pixelRatio);
       view.renderer.setSize(width, height, false);

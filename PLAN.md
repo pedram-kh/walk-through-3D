@@ -9,7 +9,8 @@ Repo: https://github.com/pedram-kh/walk-through-3D
 
 ## What differs from the walk-through (decided 2026-10-05)
 
-- Sections stack like a normal web page, each exactly one screen tall. No spacers,
+- Sections stack like a normal web page, each one screen tall except stop 02 (60% of a
+  screen; its 3D shows the middle band of the full-screen view, so the logos keep their size). No spacers,
   no hold zones, no scroll braking, no camera journeys (curl, tilt, travel).
 - No freeze and no black and white: every stop is always in colour. A stop animates,
   plays its videos and reacts to the cursor while any part of its section is on screen,
@@ -164,3 +165,4 @@ Rows before 2026-10-05 "Flat version created" are the walk-through's history, ke
 | 2026-10-05 | all | Hold zones at your request: each section is wrapped in a hold element half a screen taller than the screen (section sticky inside), so every stop stays live and in colour for an extra half screen of scrolling; the stop's dot becomes a pill that fills violet -> teal through it, then the curtain and journey start. Colour starts fading in over the last 20% of a journey into a stop (direction-aware). Inside a hold zone, wheel / trackpad scrolling is braked (x0.55, max 8% of a screen per event; touch left native). Scroll snapping removed (it would pull the page back out of a hold zone). Dots fly to the start of a hold zone. Page 12 screens for 4 stops (was 10). Then: the pill is black, filling white (not the gradient), and no single wheel step can carry the page into a zone past its edge, so every arrival from above starts with an empty pill. Approved | not measured | not measured | |
 | 2026-10-05 | all | Pause motion button removed at your request (visitors with reduced motion set still get the flat page). Approved | not measured | not measured | |
 | 2026-10-05 | all | Flat version created at your request (copy of the walk-through at commit 0f369d7): sections stacked one screen each, no journeys, freeze, black and white or hold zones; all particles removed (stop.js, build.py, stop.json; flow.bin, dust.bin, currents/, route.json, build_route.py, flow_common.py, flow.js, route.js, bench.js deleted); one canvas per section; stop N+1 and N+2 preloaded; dots as jump links; posters re-rendered without particles. Awaiting approval | not measured | not measured | |
+| 2026-10-05 | 02 | Section 60% of a screen at your request; logos keep their size (the camera shows the middle band of the full-screen view, `setViewOffset` in runtime.js `fit`); 'Creative for' label placed in screen heights. Awaiting approval | not measured | not measured | |

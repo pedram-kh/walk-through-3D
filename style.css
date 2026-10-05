@@ -64,7 +64,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--teal); outline-
 .eyebrow { margin: 0; font: 12px/1 "Geist Mono", ui-monospace, Menlo, monospace; font-weight: 400; letter-spacing: .06em;
   text-transform: uppercase; color: #ffffff80; }
 /* Text that lines up with 3D objects follows the 3D view's scale (--fit-x/y, set by the runtime). */
-.s-clients .eyebrow { position: absolute; left: calc(50% + (10% - 50%) * var(--fit-x, 1)); top: calc(50% + (39.7% - 50%) * var(--fit-y, 1) - 34px); }
+/* 60% of a screen: the 3D shows the middle band of the full-screen view (runtime fit), so the
+   label's offset from the centre is measured in screen heights (svh), not section heights. */
+.s-clients { height: 60svh; min-height: 320px; }
+.s-clients .eyebrow { position: absolute; left: calc(50% + (10% - 50%) * var(--fit-x, 1)); top: calc(50% - 10.3svh * var(--fit-y, 1) - 34px); }
 /* The brand names: real text for screen readers and search; visible only on the poster page. */
 .brand-list { margin: 0; padding: 0; list-style: none; }
 .live .brand-list { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
